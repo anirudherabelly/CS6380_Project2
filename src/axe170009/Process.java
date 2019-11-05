@@ -17,7 +17,7 @@ public class Process extends Thread{
     private int max_uid;
     private int currentRound;
     private int numOfNeighbours;
-    private boolean start;
+    private boolean terminate;
 
     private List<Process> neighbours;
 
@@ -32,14 +32,14 @@ public class Process extends Thread{
         this.max_uid = this.uid;
         this.currentRound = 0;
         this.neighbours = new ArrayList<>();
-        this.start = false;
+        this.terminate = false;
         this.messageBuffer = new DelayQueue<>();
         this.leaderStatus = Status.UNKNOWN;
     }
 
     @Override
     public void run(){
-        while(true){
+        while(!terminate){
             if (this.currentRound == 0) {
                 this.sendMessage();
             }
@@ -51,35 +51,19 @@ public class Process extends Thread{
                     this.sendMessage();
                  }
             }
-
-            if (checkLeaderElection()) {
-                break;
+            else if(this.currentRound == this.diameter) {
+                if(max_uid == uid){
+                    this.leaderStatus = Status.LEADER;
+                    System.out.println("Process with uid-"+this.uid+" is Leader.");
+                }
+                else{
+                    this.leaderStatus = Status.NON_LEADER;
+                    System.out.println("Process with uid-"+this.uid+" is Non-Leader.");
+                }
+                System.out.println("Total number of messages with process uid- "+ this.uid + ":" +this.getNumOfMessages());
+                this.currentRound += 1;
             }
         }
-
-        if(this.leaderStatus==Status.LEADER){
-            System.out.println("Process with uid-"+this.uid+" is Leader.");
-        }
-        else if(this.leaderStatus==Status.NON_LEADER){
-            System.out.println("Process with uid-"+this.uid+" is Non-Leader.");
-        }
-        else{
-            System.out.println("Something went wrong!");
-        }
-        System.out.println("Total number of messages with process uid : "+ String.valueOf(this.getNumOfMessages()));
-    }
-
-    private boolean checkLeaderElection(){
-        if(this.currentRound == this.diameter){
-            if(max_uid == uid){
-                this.leaderStatus = Status.LEADER;
-            }
-            else{
-                this.leaderStatus = Status.NON_LEADER;
-            }
-            return true;
-        }
-        return false;
     }
 
     public void addNeighbour(Process _p){
@@ -121,11 +105,7 @@ public class Process extends Thread{
         return numOfMessages;
     }
 
-    public void setStart(boolean _start) {
-        this.start = _start;
-    }
-
-    public int getUid(){
-        return this.uid;
+    public void setTerminate(boolean _terminate) {
+        this.terminate = _terminate;
     }
 }

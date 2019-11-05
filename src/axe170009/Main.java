@@ -11,8 +11,8 @@ public class Main {
     public static void main(String[] args) throws FileNotFoundException {
 
         //read the input file
-        //Scanner sc = new Scanner(new File("src/axe170009/connectivity_10.txt"));
-        Scanner sc = new Scanner(new File("src/axe170009/connectivity.txt"));
+        Scanner sc = new Scanner(new File("src/axe170009/connectivity_10.txt"));
+        //Scanner sc = new Scanner(new File("src/axe170009/connectivity.txt"));
         if(args.length >= 1){
             sc = new Scanner(new File(args[0]));
         }
@@ -58,21 +58,29 @@ public class Main {
                 }
             }
         }
-
-        boolean leaderElectionInProgress = false;
         boolean startExecution = true;
+
         while(true){
             if(startExecution){
                 //starting threads
                 for(int i=0; i<n; i++){
                     processes[i].start();
                 }
-                leaderElectionInProgress = true;
                 startExecution = false;
             }
 
+            boolean areProcessRunning = false;
             for(Process p : processes){
-                //if()
+                if(p.getLeaderStatus()==Status.UNKNOWN){
+                    areProcessRunning = true;
+                }
+            }
+            if(!areProcessRunning){
+                for(Process p : processes){
+                    p.setTerminate(true);
+                }
+                System.out.println("Leader election completed");
+                return;
             }
         }
     }

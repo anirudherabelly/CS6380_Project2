@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Message implements Delayed {
 
-    private static final int factor = 100;
+    private static final int factor = 1000;
 
     private int uid;
     private long time;
