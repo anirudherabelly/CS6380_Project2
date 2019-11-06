@@ -3,7 +3,6 @@ package axe170009;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.DelayQueue;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -94,8 +93,6 @@ public class Process extends Thread{
     }
 
     private boolean receiveMessage(){
-//        if(this.uid  == 5)
-//            System.out.println(this.messageBuffer.get(this.currentRound).size() + " "+this.numOfNeighbours);
         if (this.messageBuffer.get(this.currentRound).size() == this.numOfNeighbours) {
 
             List<Message> availableMessages;

@@ -1,0 +1,170 @@
+UID's==============
+1 2 3 4 5 6 7 8 9 10
+Graph==============
+0 1 1 1 0 1 1 1 1 0
+1 0 1 0 0 0 0 0 0 1
+1 1 0 0 1 0 0 0 0 0
+1 0 0 0 0 0 0 0 0 0
+0 0 1 0 0 0 1 0 0 0
+1 0 0 0 0 0 0 0 0 0
+1 0 0 0 1 0 0 0 0 0
+1 0 0 0 0 0 0 0 0 0
+1 0 0 0 0 0 0 0 0 0
+0 1 0 0 0 0 0 0 0 0
+Max Diameter of given graph==========3
+SEND : from process uid-1 to process uid-2 with channel delay of 9 in round 0
+SEND : from process uid-1 to process uid-3 with channel delay of 6 in round 0
+SEND : from process uid-1 to process uid-4 with channel delay of 9 in round 0
+SEND : from process uid-1 to process uid-6 with channel delay of 8 in round 0
+SEND : from process uid-1 to process uid-7 with channel delay of 3 in round 0
+SEND : from process uid-1 to process uid-8 with channel delay of 1 in round 0
+SEND : from process uid-1 to process uid-9 with channel delay of 6 in round 0
+SEND : from process uid-2 to process uid-1 with channel delay of 10 in round 0
+SEND : from process uid-10 to process uid-2 with channel delay of 1 in round 0
+SEND : from process uid-9 to process uid-1 with channel delay of 6 in round 0
+SEND : from process uid-6 to process uid-1 with channel delay of 9 in round 0
+SEND : from process uid-8 to process uid-1 with channel delay of 10 in round 0
+SEND : from process uid-4 to process uid-1 with channel delay of 7 in round 0
+SEND : from process uid-7 to process uid-1 with channel delay of 9 in round 0
+SEND : from process uid-7 to process uid-5 with channel delay of 3 in round 0
+SEND : from process uid-5 to process uid-3 with channel delay of 4 in round 0
+SEND : from process uid-3 to process uid-1 with channel delay of 2 in round 0
+SEND : from process uid-3 to process uid-2 with channel delay of 2 in round 0
+SEND : from process uid-3 to process uid-5 with channel delay of 4 in round 0
+SEND : from process uid-2 to process uid-3 with channel delay of 4 in round 0
+SEND : from process uid-2 to process uid-10 with channel delay of 5 in round 0
+SEND : from process uid-5 to process uid-7 with channel delay of 6 in round 0
+RECEIVE : from process uid-1 to process uid-8 after a channel delay of 1 in round 0
+SEND : from process uid-8 to process uid-1 with channel delay of 7 in round 1
+RECEIVE : from process uid-10 to process uid-2 after a channel delay of 1 in round 0
+RECEIVE : from process uid-3 to process uid-1 after a channel delay of 2 in round 0
+RECEIVE : from process uid-3 to process uid-2 after a channel delay of 2 in round 0
+RECEIVE : from process uid-7 to process uid-5 after a channel delay of 3 in round 0
+RECEIVE : from process uid-1 to process uid-7 after a channel delay of 3 in round 0
+RECEIVE : from process uid-3 to process uid-5 after a channel delay of 4 in round 0
+SEND : from process uid-5 to process uid-3 with channel delay of 2 in round 1
+SEND : from process uid-5 to process uid-7 with channel delay of 2 in round 1
+RECEIVE : from process uid-5 to process uid-3 after a channel delay of 4 in round 0
+RECEIVE : from process uid-2 to process uid-3 after a channel delay of 4 in round 0
+RECEIVE : from process uid-2 to process uid-10 after a channel delay of 5 in round 0
+SEND : from process uid-10 to process uid-2 with channel delay of 3 in round 1
+RECEIVE : from process uid-9 to process uid-1 after a channel delay of 6 in round 0
+RECEIVE : from process uid-1 to process uid-3 after a channel delay of 6 in round 0
+SEND : from process uid-3 to process uid-1 with channel delay of 3 in round 1
+SEND : from process uid-3 to process uid-2 with channel delay of 5 in round 1
+RECEIVE : from process uid-5 to process uid-7 after a channel delay of 6 in round 0
+SEND : from process uid-7 to process uid-1 with channel delay of 7 in round 1
+RECEIVE : from process uid-1 to process uid-9 after a channel delay of 6 in round 0
+SEND : from process uid-9 to process uid-1 with channel delay of 9 in round 1
+SEND : from process uid-3 to process uid-5 with channel delay of 8 in round 1
+SEND : from process uid-7 to process uid-5 with channel delay of 2 in round 1
+RECEIVE : from process uid-4 to process uid-1 after a channel delay of 7 in round 0
+RECEIVE : from process uid-7 to process uid-5 after a channel delay of 2 in round 1
+RECEIVE : from process uid-1 to process uid-6 after a channel delay of 8 in round 0
+SEND : from process uid-6 to process uid-1 with channel delay of 5 in round 1
+RECEIVE : from process uid-6 to process uid-1 after a channel delay of 9 in round 0
+RECEIVE : from process uid-7 to process uid-1 after a channel delay of 9 in round 0
+RECEIVE : from process uid-1 to process uid-2 after a channel delay of 9 in round 0
+RECEIVE : from process uid-1 to process uid-4 after a channel delay of 9 in round 0
+SEND : from process uid-4 to process uid-1 with channel delay of 8 in round 1
+SEND : from process uid-2 to process uid-1 with channel delay of 10 in round 1
+SEND : from process uid-2 to process uid-3 with channel delay of 5 in round 1
+SEND : from process uid-2 to process uid-10 with channel delay of 10 in round 1
+RECEIVE : from process uid-2 to process uid-1 after a channel delay of 10 in round 0
+RECEIVE : from process uid-8 to process uid-1 after a channel delay of 10 in round 0
+SEND : from process uid-1 to process uid-2 with channel delay of 6 in round 1
+RECEIVE : from process uid-10 to process uid-2 after a channel delay of 3 in round 1
+SEND : from process uid-1 to process uid-3 with channel delay of 2 in round 1
+RECEIVE : from process uid-7 to process uid-3 after a channel delay of 2 in round 1
+SEND : from process uid-1 to process uid-4 with channel delay of 1 in round 1
+SEND : from process uid-1 to process uid-6 with channel delay of 7 in round 1
+SEND : from process uid-1 to process uid-7 with channel delay of 8 in round 1
+RECEIVE : from process uid-7 to process uid-7 after a channel delay of 2 in round 1
+SEND : from process uid-1 to process uid-8 with channel delay of 5 in round 1
+SEND : from process uid-1 to process uid-9 with channel delay of 1 in round 1
+RECEIVE : from process uid-8 to process uid-1 after a channel delay of 7 in round 1
+RECEIVE : from process uid-5 to process uid-1 after a channel delay of 3 in round 1
+RECEIVE : from process uid-5 to process uid-2 after a channel delay of 5 in round 1
+RECEIVE : from process uid-9 to process uid-9 after a channel delay of 1 in round 1
+SEND : from process uid-9 to process uid-1 with channel delay of 9 in round 2
+RECEIVE : from process uid-9 to process uid-4 after a channel delay of 1 in round 1
+SEND : from process uid-4 to process uid-1 with channel delay of 5 in round 2
+RECEIVE : from process uid-9 to process uid-3 after a channel delay of 2 in round 1
+RECEIVE : from process uid-7 to process uid-1 after a channel delay of 7 in round 1
+RECEIVE : from process uid-6 to process uid-1 after a channel delay of 5 in round 1
+RECEIVE : from process uid-10 to process uid-3 after a channel delay of 5 in round 1
+SEND : from process uid-3 to process uid-1 with channel delay of 8 in round 2
+SEND : from process uid-3 to process uid-2 with channel delay of 2 in round 2
+SEND : from process uid-3 to process uid-5 with channel delay of 7 in round 2
+RECEIVE : from process uid-5 to process uid-5 after a channel delay of 8 in round 1
+SEND : from process uid-5 to process uid-3 with channel delay of 10 in round 2
+SEND : from process uid-5 to process uid-7 with channel delay of 8 in round 2
+RECEIVE : from process uid-9 to process uid-1 after a channel delay of 9 in round 1
+RECEIVE : from process uid-9 to process uid-8 after a channel delay of 5 in round 1
+SEND : from process uid-8 to process uid-1 with channel delay of 6 in round 2
+RECEIVE : from process uid-9 to process uid-2 after a channel delay of 6 in round 1
+SEND : from process uid-2 to process uid-1 with channel delay of 7 in round 2
+SEND : from process uid-2 to process uid-3 with channel delay of 2 in round 2
+SEND : from process uid-2 to process uid-10 with channel delay of 4 in round 2
+RECEIVE : from process uid-4 to process uid-1 after a channel delay of 8 in round 1
+RECEIVE : from process uid-9 to process uid-6 after a channel delay of 7 in round 1
+SEND : from process uid-6 to process uid-1 with channel delay of 1 in round 2
+RECEIVE : from process uid-9 to process uid-7 after a channel delay of 8 in round 1
+SEND : from process uid-7 to process uid-1 with channel delay of 9 in round 2
+SEND : from process uid-7 to process uid-5 with channel delay of 6 in round 2
+RECEIVE : from process uid-10 to process uid-10 after a channel delay of 10 in round 1
+RECEIVE : from process uid-10 to process uid-1 after a channel delay of 10 in round 1
+SEND : from process uid-10 to process uid-2 with channel delay of 7 in round 2
+SEND : from process uid-1 to process uid-2 with channel delay of 6 in round 2
+SEND : from process uid-1 to process uid-3 with channel delay of 10 in round 2
+RECEIVE : from process uid-10 to process uid-3 after a channel delay of 2 in round 2
+SEND : from process uid-1 to process uid-4 with channel delay of 3 in round 2
+SEND : from process uid-1 to process uid-6 with channel delay of 9 in round 2
+RECEIVE : from process uid-10 to process uid-2 after a channel delay of 2 in round 2
+SEND : from process uid-1 to process uid-7 with channel delay of 9 in round 2
+SEND : from process uid-1 to process uid-8 with channel delay of 7 in round 2
+SEND : from process uid-1 to process uid-9 with channel delay of 2 in round 2
+RECEIVE : from process uid-9 to process uid-1 after a channel delay of 5 in round 2
+RECEIVE : from process uid-9 to process uid-1 after a channel delay of 1 in round 2
+RECEIVE : from process uid-10 to process uid-10 after a channel delay of 4 in round 2
+Process with uid-10 is Leader.
+Total number of messages with process uid- 10:3
+RECEIVE : from process uid-9 to process uid-1 after a channel delay of 9 in round 2
+RECEIVE : from process uid-10 to process uid-9 after a channel delay of 2 in round 2
+Process with uid-9 is Non-Leader.
+Total number of messages with process uid- 9:3
+RECEIVE : from process uid-10 to process uid-5 after a channel delay of 7 in round 2
+RECEIVE : from process uid-7 to process uid-7 after a channel delay of 8 in round 2
+RECEIVE : from process uid-9 to process uid-1 after a channel delay of 6 in round 2
+RECEIVE : from process uid-10 to process uid-1 after a channel delay of 8 in round 2
+RECEIVE : from process uid-10 to process uid-4 after a channel delay of 3 in round 2
+Process with uid-4 is Non-Leader.
+Total number of messages with process uid- 4:3
+RECEIVE : from process uid-10 to process uid-1 after a channel delay of 7 in round 2
+RECEIVE : from process uid-7 to process uid-3 after a channel delay of 10 in round 2
+RECEIVE : from process uid-9 to process uid-5 after a channel delay of 6 in round 2
+Process with uid-5 is Non-Leader.
+Total number of messages with process uid- 5:6
+RECEIVE : from process uid-10 to process uid-2 after a channel delay of 6 in round 2
+RECEIVE : from process uid-10 to process uid-2 after a channel delay of 7 in round 2
+Process with uid-2 is Non-Leader.
+Total number of messages with process uid- 2:9
+RECEIVE : from process uid-10 to process uid-8 after a channel delay of 7 in round 2
+Process with uid-8 is Non-Leader.
+Total number of messages with process uid- 8:3
+RECEIVE : from process uid-9 to process uid-1 after a channel delay of 9 in round 2
+Process with uid-1 is Non-Leader.
+Total number of messages with process uid- 1:21
+RECEIVE : from process uid-10 to process uid-6 after a channel delay of 9 in round 2
+Process with uid-6 is Non-Leader.
+Total number of messages with process uid- 6:3
+RECEIVE : from process uid-10 to process uid-7 after a channel delay of 9 in round 2
+Process with uid-7 is Non-Leader.
+Total number of messages with process uid- 7:6
+RECEIVE : from process uid-10 to process uid-3 after a channel delay of 10 in round 2
+Process with uid-3 is Non-Leader.
+Total number of messages with process uid- 3:9
+Total Number of Messages : 66
+==========Leader election completed===========
+
+Process finished with exit code 0
