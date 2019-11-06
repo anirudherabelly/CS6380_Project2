@@ -1,6 +1,7 @@
 package axe170009;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.DelayQueue;
@@ -21,7 +22,7 @@ public class Process extends Thread{
 
     private List<Process> neighbours;
 
-    private BlockingQueue<Message> messageBuffer;
+    private HashMap<Integer, DelayQueue<Message>> messageBuffer;
 
     private Status leaderStatus;
 
@@ -33,23 +34,31 @@ public class Process extends Thread{
         this.currentRound = 0;
         this.neighbours = new ArrayList<>();
         this.terminate = false;
-        this.messageBuffer = new DelayQueue<>();
+        this.messageBuffer = initializeMessageBuffer();
         this.leaderStatus = Status.UNKNOWN;
+
     }
+
+    private HashMap<Integer, DelayQueue<Message>> initializeMessageBuffer(){
+        HashMap<Integer, DelayQueue<Message>> map = new HashMap<>();
+        for(int i=0; i<this.diameter; i++){
+            map.put(i, new DelayQueue<>());
+        }
+        return map;
+    }
+
 
     @Override
     public void run(){
+        boolean canSendMessage = true;
         while(!terminate){
-            if (this.currentRound == 0) {
-                this.sendMessage();
-            }
-            else if (this.currentRound < this.diameter){
-                 if (this.messageBuffer.size() == this.numOfNeighbours) {
-                    while (this.messageBuffer.size() > 0) {
-                        this.receiveMessage();
-                    }
+            if (this.currentRound < this.diameter){
+                if(canSendMessage){
                     this.sendMessage();
-                 }
+                    canSendMessage = false;
+                }
+                boolean isProcessed = this.receiveMessage();
+                if(isProcessed) canSendMessage = true;
             }
             else if(this.currentRound == this.diameter) {
                 if(max_uid == uid){
@@ -71,30 +80,44 @@ public class Process extends Thread{
         this.numOfNeighbours += 1;
     }
 
-    public boolean sendMessage(){
-        this.currentRound += 1;
+    private boolean sendMessage(){
         for(Process p : this.neighbours){
             int randDelay = ThreadLocalRandom.current().nextInt(DELAY_MIN, DELAY_MAX+1);
-            p.getMessageBuffer().add(new Message(max_uid, randDelay));
+
+            p.messageBuffer.get(this.currentRound).add(new Message(max_uid, this.currentRound, randDelay));
+
             this.numOfMessages += 1;
-            System.out.println("SEND : from process uid-"+this.uid+" to process uid-"+p.uid+" with channel delay of "+ randDelay);
+
+            System.out.println("SEND : from process uid-"+this.uid+" to process uid-"+p.uid+" with channel delay of "+ randDelay+" in round "+this.currentRound);
         }
         return true;
     }
 
-    public boolean receiveMessage(){
-        List<Message> availableMessages = new ArrayList<>();
-        this.messageBuffer.drainTo(availableMessages);
-        if(availableMessages.isEmpty())return false;
-        for(Message message : availableMessages){
-            max_uid = Math.max(max_uid, message.getUid());
-            System.out.println("RECEIVE : from process uid-"+message.getUid()+" to process uid-"+this.uid+" after a channel delay of "+ message.getDelayTime());
-        }
-        return true;
-    }
+    private boolean receiveMessage(){
+//        if(this.uid  == 5)
+//            System.out.println(this.messageBuffer.get(this.currentRound).size() + " "+this.numOfNeighbours);
+        if (this.messageBuffer.get(this.currentRound).size() == this.numOfNeighbours) {
 
-    public BlockingQueue<Message> getMessageBuffer() {
-        return messageBuffer;
+            List<Message> availableMessages;
+
+            while (this.messageBuffer.get(this.currentRound).size() > 0) {
+
+                availableMessages = new ArrayList<>();
+
+                this.messageBuffer.get(this.currentRound).drainTo(availableMessages);
+
+                for (Message message : availableMessages) {
+                    max_uid = Math.max(max_uid, message.getUid());
+
+                    System.out.println("RECEIVE : from process uid-" + message.getUid() + " to process uid-" + this.uid + " after a channel delay of " + message.getDelayTime() + " in round " + this.currentRound);
+                }
+            }
+            this.messageBuffer.remove(this.currentRound);
+            this.currentRound += 1;
+
+            return true;
+        }
+        return false;
     }
 
     public Status getLeaderStatus() {

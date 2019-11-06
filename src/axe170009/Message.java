@@ -5,19 +5,21 @@ import java.util.concurrent.TimeUnit;
 
 public class Message implements Delayed {
 
-    private static final int factor = 1000;
+    private static final int factor = 100;
 
     private int uid;
     private long time;
     private long delayTime;
+    private int round;
 
     // Constructor of DelayObject
-    public Message(int _uid, long _delayTime)
+    public Message(int _uid, int _round, long _delayTime)
     {
         this.uid = _uid;
         this.time = System.currentTimeMillis()
                 + _delayTime*factor;
         this.delayTime = _delayTime;
+        this.round = _round;
     }
 
     // Implementing getDelay() method of Delayed

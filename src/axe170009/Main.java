@@ -58,28 +58,29 @@ public class Main {
                 }
             }
         }
-        boolean startExecution = true;
 
+        for(int i=0; i<n; i++){
+            processes[i].start();
+        }
+        boolean areProcessRunning = false;
+        int totalNumberOfMessages = 0;
         while(true){
-            if(startExecution){
-                //starting threads
-                for(int i=0; i<n; i++){
-                    processes[i].start();
-                }
-                startExecution = false;
-            }
 
-            boolean areProcessRunning = false;
+            areProcessRunning = false;
             for(Process p : processes){
                 if(p.getLeaderStatus()==Status.UNKNOWN){
                     areProcessRunning = true;
                 }
             }
+
             if(!areProcessRunning){
+
                 for(Process p : processes){
+                    totalNumberOfMessages+=p.getNumOfMessages();
                     p.setTerminate(true);
                 }
-                System.out.println("Leader election completed");
+                System.out.println("Total Number of Messages : "+totalNumberOfMessages);
+                System.out.println("==========Leader election completed===========");
                 return;
             }
         }
