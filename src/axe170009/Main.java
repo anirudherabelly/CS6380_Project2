@@ -45,11 +45,13 @@ public class Main {
         int diameter = findMaxDiameter(graph, n);
         System.out.println("Max Diameter of given graph=========="+diameter);
         Process[]  processes = new Process[n];
+
+        // Creating childThreads
         for(int i=0; i<n; i++){
             processes[i] = new Process(uids[i], diameter);
         }
 
-        //creating childThreads
+        //Adding the neighbours if there is an edge
         for(int i=0; i<n; i++){
             Process p = processes[i];
             for(int j=0; j<n; j++){
@@ -59,11 +61,14 @@ public class Main {
             }
         }
 
+        // Starting childThreads
         for(int i=0; i<n; i++){
             processes[i].start();
         }
         boolean areProcessRunning = false;
         int totalNumberOfMessages = 0;
+
+        // Running until a leader gets elected
         while(true){
 
             areProcessRunning = false;
@@ -109,7 +114,9 @@ public class Main {
      */
     private static int findDiameter(int vertex, boolean[][] graph, int n){
         int diameter = -1;
+        // Here we are using a queue to do a BFS on the vertex's neighbours.
         Deque<Integer> q = new ArrayDeque<>();
+        // Boolean array to check if the vertex is already visited.
         boolean[] seen = new boolean[n];
         q.addFirst(vertex);
         seen[vertex] = true;
@@ -119,6 +126,7 @@ public class Main {
             for(int i=0; i<size; i++){
                 int curVertex = q.removeLast();
                 for(int j=0; j<n; j++){
+                    // Adding an unseen node if there is an edge in between
                     if(graph[curVertex][j] && !seen[j]){
                         q.addFirst(j);
                         seen[j] = true;

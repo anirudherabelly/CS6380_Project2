@@ -11,16 +11,22 @@ public class Process extends Thread{
     private static final int DELAY_MIN = 1;
     private static final int DELAY_MAX = 10;
 
+    // This process' UID
     private int uid;
+    // Number of messages sent by this process
     private int numOfMessages;
     private int diameter;
+    // Max UID seen so far
     private int max_uid;
+    // Storing the round info
     private int currentRound;
     private int numOfNeighbours;
+    // Flag to terminate the process when the leader is elected
     private boolean terminate;
 
     private List<Process> neighbours;
 
+    // Specifies the number of messages this process has received in a specific round
     private HashMap<Integer, DelayQueue<Message>> messageBuffer;
 
     private Status leaderStatus;
@@ -35,9 +41,12 @@ public class Process extends Thread{
         this.terminate = false;
         this.messageBuffer = initializeMessageBuffer();
         this.leaderStatus = Status.UNKNOWN;
-
     }
 
+    /**
+     * Method to initialize this process' message buffer
+     * @return message buffer of this process
+     */
     private HashMap<Integer, DelayQueue<Message>> initializeMessageBuffer(){
         HashMap<Integer, DelayQueue<Message>> map = new HashMap<>();
         for(int i=0; i<this.diameter; i++){
@@ -49,6 +58,8 @@ public class Process extends Thread{
 
     @Override
     public void run(){
+        // Inititally canSendMessage flag of this process is true  
+        // and it remains false until it receives messages from all it's neighbours  
         boolean canSendMessage = true;
         while(!terminate){
             if (this.currentRound < this.diameter){
@@ -74,15 +85,25 @@ public class Process extends Thread{
         }
     }
 
+    /**
+     * Method to add the neighbours of this process
+     * @param _p process object
+     */
     public void addNeighbour(Process _p){
         this.neighbours.add(_p);
         this.numOfNeighbours += 1;
     }
 
+    /**
+     * Method to send message to all it's neighbours
+     * @return boolean specifies whether the message are sent to all it's neighbours 
+     */
     private boolean sendMessage(){
         for(Process p : this.neighbours){
+            // Introduces random delay for this message
             int randDelay = ThreadLocalRandom.current().nextInt(DELAY_MIN, DELAY_MAX+1);
-
+            
+            // Add the new message to this processes' messageBuffer  
             p.messageBuffer.get(this.currentRound).add(new Message(max_uid, this.currentRound, randDelay));
 
             this.numOfMessages += 1;
@@ -92,9 +113,15 @@ public class Process extends Thread{
         return true;
     }
 
+    /**
+     * Method to receive messages from all it's neighbours
+     * @return TRUE only when it receives message from all it's neighbours
+     */
     private boolean receiveMessage(){
         if (this.messageBuffer.get(this.currentRound).size() == this.numOfNeighbours) {
 
+            // contains the messages which are available to the 
+            // process in this round
             List<Message> availableMessages;
 
             while (this.messageBuffer.get(this.currentRound).size() > 0) {
@@ -109,6 +136,9 @@ public class Process extends Thread{
                     System.out.println("RECEIVE : from process uid-" + message.getUid() + " to process uid-" + this.uid + " after a channel delay of " + message.getDelayTime() + " in round " + this.currentRound);
                 }
             }
+
+            // Removing the message from this buffer after 
+            // processing the received messages
             this.messageBuffer.remove(this.currentRound);
             this.currentRound += 1;
 
@@ -117,14 +147,26 @@ public class Process extends Thread{
         return false;
     }
 
+    /**
+     * Method to know the current status of the process
+     * @return leader status
+     */
     public Status getLeaderStatus() {
         return leaderStatus;
     }
 
+    /**
+     * Method to ge the count of messages
+     * @return numOfMessages
+     */
     public int getNumOfMessages() {
         return numOfMessages;
     }
 
+    /**
+     * Method to toggle the terminate flag of this process
+     * @return numOfMessages
+     */
     public void setTerminate(boolean _terminate) {
         this.terminate = _terminate;
     }

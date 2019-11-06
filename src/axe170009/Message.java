@@ -5,10 +5,14 @@ import java.util.concurrent.TimeUnit;
 
 public class Message implements Delayed {
 
+    // Time factor
     private static final int factor = 100;
 
+    // UID of process which is sending this message
     private int uid;
+    // Current Time
     private long time;
+    // Random delay for this message
     private long delayTime;
     private int round;
 
@@ -22,7 +26,10 @@ public class Message implements Delayed {
         this.round = _round;
     }
 
-    // Implementing getDelay() method of Delayed
+    /**
+     * Method to implement getDelay() method of Delayed
+     * @return Time in milli seconds
+     */
     @Override
     public long getDelay(TimeUnit unit)
     {
@@ -30,7 +37,10 @@ public class Message implements Delayed {
         return unit.convert(diff, TimeUnit.MILLISECONDS);
     }
 
-    // Implementing compareTo() method of Delayed
+    /**
+     * Method to implement compareTo() method of Delayed
+     * @return -1,1,0
+     */
     @Override
     public int compareTo(Delayed other)
     {
@@ -53,11 +63,18 @@ public class Message implements Delayed {
                 + "}";
     }
 
-
+    /**
+     * Method to get the UID of this message
+     * @return message UID
+     */
     public int getUid() {
         return uid;
     }
 
+    /**
+     * Method to get the delay time of this message
+     * @return delayed time
+     */
     public long getDelayTime() {
         return delayTime;
     }
